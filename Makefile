@@ -73,12 +73,12 @@ install_nsm: src/$(BIN)
 	cp src/xpm/seq192_32.xpm $(DESTDIR)$(PREFIX)/share/pixmaps/seq192.xpm
 	cp desktop/seq192.desktop $(DESTDIR)$(PREFIX)/share/applications/seq192.desktop
 	cp desktop/seq192-jt.desktop $(DESTDIR)$(PREFIX)/share/applications/seq192-jt.desktop
-	#cp desktop/seq192-noui-jt.desktop $(DESTDIR)$(PREFIX)/share/applications/seq192-noui-jt.desktop
-	#cp desktop/seq192-noui.desktop $(DESTDIR)$(PREFIX)/share/applications/seq192-noui.desktop
+	cp desktop/seq192-noui-jt.desktop $(DESTDIR)$(PREFIX)/share/applications/seq192-noui-jt.desktop
+	cp desktop/seq192-noui.desktop $(DESTDIR)$(PREFIX)/share/applications/seq192-noui.desktop
 	cp man/seq192.1 $(DESTDIR)$(PREFIX)/share/man/man1/seq192.1
 	ln -sf $(DESTDIR)$(PREFIX)/bin/$(BIN) $(DESTDIR)$(PREFIX)/bin/$(BIN_JT) 
-	#ln -sf $(DESTDIR)$(PREFIX)/bin/$(BIN) $(DESTDIR)$(PREFIX)/bin/$(BIN_NOUI_JT) 
-	#ln -sf $(DESTDIR)$(PREFIX)/bin/$(BIN) $(DESTDIR)$(PREFIX)/bin/$(BIN_NOUI) 
+	ln -sf $(DESTDIR)$(PREFIX)/bin/$(BIN) $(DESTDIR)$(PREFIX)/bin/$(BIN_NOUI_JT) 
+	ln -sf $(DESTDIR)$(PREFIX)/bin/$(BIN) $(DESTDIR)$(PREFIX)/bin/$(BIN_NOUI) 
 
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN)
