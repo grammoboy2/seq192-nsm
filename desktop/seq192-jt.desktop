@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=seq192-jt
+Comment=Live MIDI sequencer using jack-transport
+Icon=seq192-jt
+Exec=seq192-jt
+TryExec=seq192-jt
+Terminal=false
+Type=Application
+Categories=Audio;Sequencer;AudioVideo;
+X-NSM-Capable=true
+X-NSM-Exec=seq192-jt

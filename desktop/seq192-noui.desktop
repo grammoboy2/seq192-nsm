@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=seq192-noui
+Comment=Live MIDI sequencer no ui, no jack-transport
+Icon=seq192-noui
+Exec=seq192-noui
+TryExec=seq192-noui
+Terminal=false
+Type=Application
+Categories=Audio;Sequencer;AudioVideo;
+X-NSM-Capable=true
+X-NSM-Exec=seq192-noui

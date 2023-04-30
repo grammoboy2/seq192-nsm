@@ -143,6 +143,11 @@ main (int argc, char *argv[])
             global_user_keymap_definitions[i].keys_active[j] = false;
     }
 
+    {
+    /* NOTE unofficial code addition: set oscport from environment variable, for use in non-session-manager (NSM) without the need for cli arguments. */
+    global_oscport = getenv( "SEQ192_OSCPORT" );
+    }
+
     /* parse parameters */
     int c;
     while (1) {
@@ -221,6 +226,29 @@ main (int argc, char *argv[])
 
     }
 
+    
+
+    {
+
+    /* NOTE: unofficial code addition, use options without the need for cli arguments for use in non-session-manager (NSM).
+     * Based on code from non-mixer by J. Liles. */
+
+        char *name = strdup( argv[0] );
+        char *n = basename( name );
+        if ( ! strcmp( n, "seq192-jt" ) ) {
+            global_with_jack_transport = true;
+        } else if ( ! strcmp( n, "seq192-noui") ) {
+            global_no_gui = true;
+        } else if ( ! strcmp( n, "seq192-noui-jt") ) {
+            global_no_gui = true; 
+            global_with_jack_transport = true;
+        }
+
+        free( name );
+    }
+
+
+    
     // nsm
     const char *nsm_url = getenv( "NSM_URL" );
     if (nsm_url) {
