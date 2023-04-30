@@ -114,7 +114,7 @@ nsm_open_cb(const char *name, const char *display_name, const char *client_id, c
     nsm_optional_gui_support = strstr(nsm_get_session_manager_features(nsm), "optional-gui");
     mkdir(nsm_folder.c_str(), 0777);
     // make sure nsm server doesn't override cached visibility state
-    nsm_send_is_shown(nsm);
+    //nsm_send_is_shown(nsm); // NOTE: Unofficial code edit.
     return ERR_OK;
 }
 
@@ -337,6 +337,18 @@ main (int argc, char *argv[])
 
     int status = 0;
     if (global_no_gui) {
+        if (nsm) { // NOTE unofficial code addition.
+            // bind quit signal
+            signal(SIGTERM, [](int param){
+                global_is_running = false;
+                //application->quit();
+            });
+            // bind ctrl+c signal
+            signal(SIGINT, [](int param){
+                global_is_running = false;
+                //application->quit();
+            });
+        }
         while (global_is_running) {
             usleep(1000);
         }
@@ -369,7 +381,6 @@ main (int argc, char *argv[])
             global_is_running = false;
             application->quit();
         });
-
 
         status = application->run(window);
         #endif
