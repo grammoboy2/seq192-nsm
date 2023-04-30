@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=seq192-jt
 Comment=Live MIDI sequencer using jack-transport
-Icon=seq192-jt
+Icon=seq192
 Exec=seq192-jt
 TryExec=seq192-jt
 Terminal=false

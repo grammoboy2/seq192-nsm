@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=seq192-noui
 Comment=Live MIDI sequencer no ui, no jack-transport
-Icon=seq192-noui
+Icon=seq192
 Exec=seq192-noui
 TryExec=seq192-noui
 Terminal=false
