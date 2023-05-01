@@ -65,6 +65,7 @@ bool global_is_running = true;
 char* global_oscport;
 
 string global_client_name = PACKAGE;
+const char* nsm_pretty_name = "Seq192"; // Unofficial code addition: test pretty name.
 
 user_midi_bus_definition   global_user_midi_bus_definitions[c_maxBuses];
 user_instrument_definition global_user_instrument_definitions[c_max_instruments];
@@ -237,16 +238,18 @@ main (int argc, char *argv[])
         char *n = basename( name );
         if ( ! strcmp( n, "seq192-jt" ) ) {
             global_with_jack_transport = true;
+            nsm_pretty_name = "Seq192-jt";
         } else if ( ! strcmp( n, "seq192-noui") ) {
             global_no_gui = true;
+            nsm_pretty_name = "Seq192-noui";
         } else if ( ! strcmp( n, "seq192-noui-jt") ) {
             global_no_gui = true; 
             global_with_jack_transport = true;
+            nsm_pretty_name = "Seq192-noui-jt";
         }
 
         free( name );
     }
-
 
     
     // nsm
@@ -256,9 +259,9 @@ main (int argc, char *argv[])
         nsm_set_open_callback(nsm, nsm_open_cb, 0);
         if (nsm_init(nsm, nsm_url) == 0) {
             if (global_no_gui) { // Unofficial code edit: don't announce with :optional-gui: when there is no gui.
-                nsm_send_announce(nsm, PACKAGE, ":dirty:", argv[0]);
+                nsm_send_announce(nsm, nsm_pretty_name, ":dirty:", argv[0]); // pretty name.
             } else {
-                nsm_send_announce(nsm, PACKAGE, ":optional-gui:dirty:", argv[0]);
+                nsm_send_announce(nsm, nsm_pretty_name, ":optional-gui:dirty:", argv[0]); // pretty name.
             }
         }
         int timeout = 0;
