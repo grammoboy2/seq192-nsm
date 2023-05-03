@@ -334,18 +334,6 @@ main (int argc, char *argv[])
 
     int status = 0;
     if (global_no_gui) {
-        if (nsm) { // NOTE unofficial code addition.
-            // bind quit signal
-            signal(SIGTERM, [](int param){
-                global_is_running = false;
-                //application->quit();
-            });
-            // bind ctrl+c signal
-            signal(SIGINT, [](int param){
-                global_is_running = false;
-                //application->quit();
-            });
-        }
         while (global_is_running) {
             if (nsm) nsm_check_nowait(nsm);
             usleep(10000);
