@@ -255,11 +255,8 @@ main (int argc, char *argv[])
         nsm = nsm_new();
         nsm_set_open_callback(nsm, nsm_open_cb, 0);
         if (nsm_init(nsm, nsm_url) == 0) {
-            if (global_no_gui) { // Unofficial code edit: don't announce with :optional-gui: when there is no gui.
-                nsm_send_announce(nsm, PACKAGE, ":dirty:", argv[0]);
-            } else {
-                nsm_send_announce(nsm, PACKAGE, ":optional-gui:dirty:", argv[0]);
-            }
+            if (!global_no_gui) nsm_send_announce(nsm, PACKAGE, ":optional-gui:dirty:", argv[0]);
+            else nsm_send_announce(nsm, PACKAGE, ":dirty:", argv[0]);
         }
         int timeout = 0;
         while (nsm_wait) {
@@ -350,7 +347,8 @@ main (int argc, char *argv[])
             });
         }
         while (global_is_running) {
-            usleep(1000);
+            if (nsm) nsm_check_nowait(nsm);
+            usleep(10000);
         }
     } else {
         #ifdef USE_GTK
