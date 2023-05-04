@@ -3,9 +3,9 @@ CXXFLAGS = -g -Og $(shell pkg-config --cflags liblo alsa) -Wall -Wpointer-arith
 LDFLAGS = $(shell pkg-config --libs liblo alsa)
 SOURCES = $(wildcard src/core/*.cpp) src/seq192.cpp
 BIN = seq192
-BIN_JT = seq192-jt
-BIN_NOUI = seq192-noui
-BIN_NOUI_JT = seq192-noui-jt
+BIN_JT = seq192-jt  # edit
+BIN_NOUI = seq192-noui  # edit
+BIN_NOUI_JT = seq192-noui-jt  # edit
 
 PREFIX = /usr/local
 
@@ -26,7 +26,7 @@ endif
 OBJ = $(SOURCES:.cpp=.o)
 DEPENDS := $(SOURCES:.cpp=.d)
 
-.PHONY: all clean #install install_all uninstall
+.PHONY: all clean #install install_all uninstall # edit
 
 all: src/$(BIN)
 
@@ -64,6 +64,7 @@ install: src/$(BIN)
 	cp desktop/seq192.desktop $(DESTDIR)$(PREFIX)/share/applications/seq192.desktop
 	cp man/seq192.1 $(DESTDIR)$(PREFIX)/share/man/man1/seq192.1
 
+# edit
 install_nsm: src/$(BIN)
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	mkdir -p $(DESTDIR)$(PREFIX)/share/pixmaps
@@ -79,15 +80,16 @@ install_nsm: src/$(BIN)
 	ln -sf $(DESTDIR)$(PREFIX)/bin/$(BIN) $(DESTDIR)$(PREFIX)/bin/$(BIN_JT) 
 	ln -sf $(DESTDIR)$(PREFIX)/bin/$(BIN) $(DESTDIR)$(PREFIX)/bin/$(BIN_NOUI_JT) 
 	ln -sf $(DESTDIR)$(PREFIX)/bin/$(BIN) $(DESTDIR)$(PREFIX)/bin/$(BIN_NOUI) 
+# end edit
 
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN)
-	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN_JT)
-	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN_NOUI_JT)
-	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN_NOUI)
+	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN_JT)  # edit
+	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN_NOUI_JT)  # edit 
+	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN_NOUI)  # edit
 	rm -f $(DESTDIR)$(PREFIX)/share/pixmaps/seq192.xpm
 	rm -f $(DESTDIR)$(PREFIX)/share/applications/seq192.desktop
-	rm -f $(DESTDIR)$(PREFIX)/share/applications/seq192-jt.desktop
-	rm -f $(DESTDIR)$(PREFIX)/share/applications/seq192-noui-jt.desktop
-	rm -f $(DESTDIR)$(PREFIX)/share/applications/seq192-noui.desktop
+	rm -f $(DESTDIR)$(PREFIX)/share/applications/seq192-jt.desktop  # edit
+	rm -f $(DESTDIR)$(PREFIX)/share/applications/seq192-noui-jt.desktop  # edit
+	rm -f $(DESTDIR)$(PREFIX)/share/applications/seq192-noui.desktop  # edit
 	rm -f $(DESTDIR)$(PREFIX)/share/man/man1/seq192.1
