@@ -144,8 +144,9 @@ main (int argc, char *argv[])
     }
 
     {
-    /* NOTE unofficial code addition: set oscport from environment variable, for use in non-session-manager (NSM) without the need for cli arguments. */
-    global_oscport = getenv( "SEQ192_OSCPORT" );
+    /* NOTE unofficial pseudo code addition: set oscport from environment variable, for use in non-session-manager (NSM) without the need for cli arguments. 
+     * this doesn't work for OSC, when using multiple instances of seq192, it needs a free port. 
+    * global_oscport = getenv( "SEQ192_OSCPORT" ); */
     }
 
     /* parse parameters */
