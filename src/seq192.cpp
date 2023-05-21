@@ -246,6 +246,12 @@ main (int argc, char *argv[])
         }
 
         free( name );
+
+        if ( NULL == getenv("DISPLAY") )
+        {
+            printf("Not running UI: $DISPLAY environment variable unset\n");
+            global_no_gui = true;
+        }
     }
 
 
